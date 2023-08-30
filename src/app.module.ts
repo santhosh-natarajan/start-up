@@ -7,6 +7,7 @@ import { CustomerModule } from './customer/customer.module';
 import { LoggerMiddleWare } from './middleware';
 import { TypeOrmModule} from '@nestjs/typeorm';
 import { Customer } from './customer/entity/customer.entity';
+import { ProductModule } from './product/product.module';
 
 @Module({
   imports: [
@@ -20,7 +21,7 @@ import { Customer } from './customer/entity/customer.entity';
       database:'billing',
       entities:[Customer],
       synchronize:true
-    })
+    }), ProductModule
   ],
   controllers: [AppController, RegisterController],
   providers: [AppService],
