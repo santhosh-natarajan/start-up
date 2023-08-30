@@ -8,6 +8,7 @@ import { LoggerMiddleWare } from './middleware';
 import { TypeOrmModule} from '@nestjs/typeorm';
 import { Customer } from './customer/entity/customer.entity';
 import { ProductModule } from './product/product.module';
+import { Product } from './product/entity/product.entity';
 
 @Module({
   imports: [
@@ -19,7 +20,7 @@ import { ProductModule } from './product/product.module';
       username:'root',
       password:'Root@123',
       database:'billing',
-      entities:[Customer],
+      entities:[Customer, Product],
       synchronize:true
     }), ProductModule
   ],

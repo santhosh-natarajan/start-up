@@ -1,9 +1,11 @@
 /* eslint-disable prettier/prettier */
 import { Controller, Get, Post, Body, ValidationPipe, UsePipes } from '@nestjs/common';
 import { ProductDto } from './dto/product.dto';
+import { ProductService } from './product.service';
 
 @Controller('product')
 export class ProductController {
+    constructor(private readonly productService:ProductService) {}
 
     @Get()
     getAllProduct() { 
@@ -13,12 +15,11 @@ export class ProductController {
     @Post()
     @UsePipes(new ValidationPipe())
     createProduct(@Body() newProductData: ProductDto) { 
-        console.log("New product data", newProductData);
         const productData = newProductData;
         productData.sgst = this.calculateSGST(productData.type, productData.price);
         productData.cgst = this.calculateCGST(productData.type, productData.price);
         productData.mrp = this.calculateMRP(productData.sgst, productData.cgst, productData.price);
-        console.log("updated product data", productData); 
+        this.productService.createProduct(newProductData);
     }
 
     private calculateSGST = (productType:string, productPrice: number) => { 
