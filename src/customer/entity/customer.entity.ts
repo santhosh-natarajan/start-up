@@ -1,26 +1,30 @@
 /* eslint-disable prettier/prettier */
-import { Entity, PrimaryGeneratedColumn, Column, DeleteDateColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  DeleteDateColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 @Entity()
-export class Customer { 
-    @PrimaryGeneratedColumn()
-    id:number;
+export class Customer {
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @Column()
-    name:string;
-    
-    @Column()
-    phonenumber:string;
+  @Column()
+  name: string;
 
-    @CreateDateColumn()
-    createdAt: Date;
+  @Column()
+  phonenumber: string;
 
-    @UpdateDateColumn()
-    updatedAt: Date;
+  @CreateDateColumn()
+  createdAt: Date;
 
-    @DeleteDateColumn()
-    deletedAt: Date;
+  @UpdateDateColumn()
+  updatedAt: Date;
 
-
-    
+  @DeleteDateColumn()
+  deletedAt: Date;
 }

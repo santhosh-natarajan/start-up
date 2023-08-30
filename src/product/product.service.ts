@@ -7,27 +7,31 @@ import { ProductDto } from './dto/product.dto';
 
 @Injectable()
 export class ProductService {
-    constructor(@InjectRepository(Product) private productRepository: Repository<Product> ) { }
+  constructor(
+    @InjectRepository(Product) private productRepository: Repository<Product>,
+  ) {}
 
-    async createProduct(newProductData:ProductDto) { 
-        await this.productRepository.save(newProductData);
-    }
+  async createProduct(newProductData: ProductDto) {
+    await this.productRepository.save(newProductData);
+  }
 
-    async find():Promise<Product[]> {
-        return await this.productRepository.find();
-    }
+  async find(): Promise<Product[]> {
+    return await this.productRepository.find();
+  }
 
-    async findOne(id:number):Promise<Product> {
-        return await this.productRepository.findOne({where:{id}})
-    }
+  async findOne(id: number): Promise<Product> {
+    return await this.productRepository.findOne({ where: { id } });
+  }
 
-    async update(productId:number, updatedProductDto:ProductDto):Promise<Product> {
-        await this.productRepository.update(productId, updatedProductDto)
-        return this.productRepository.findOne({where:{id:productId}})
-    }
+  async update(
+    productId: number,
+    updatedProductDto: ProductDto,
+  ): Promise<Product> {
+    await this.productRepository.update(productId, updatedProductDto);
+    return this.productRepository.findOne({ where: { id: productId } });
+  }
 
-    async remove(productId:number) {
-        return await this.productRepository.softDelete(productId)
-    }
+  async remove(productId: number) {
+    return await this.productRepository.softDelete(productId);
+  }
 }
-

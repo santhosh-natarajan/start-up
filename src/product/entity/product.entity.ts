@@ -1,41 +1,48 @@
 /* eslint-disable prettier/prettier */
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, DeleteDateColumn } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
+  DeleteDateColumn,
+} from 'typeorm';
 
 @Entity()
-export class Product { 
-    @PrimaryGeneratedColumn()
-    id:number;
+export class Product {
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @Column()
-    name: string;
+  @Column()
+  name: string;
 
-    @Column()
-    type:string;
+  @Column()
+  type: string;
 
-    @Column()
-    price: number;
+  @Column()
+  price: number;
 
-    @Column()
-    availableQuantity: number;
+  @Column()
+  availableQuantity: number;
 
-    @Column()
-    unitWeight:number;
+  @Column()
+  unitWeight: number;
 
-    @Column()
-    sgst:number;
+  @Column()
+  sgst: number;
 
-    @Column()
-    cgst:number;
+  @Column()
+  cgst: number;
 
-    @Column()
-    mrp:number;
- 
-    @CreateDateColumn()
-    createdAt: Date;
+  @Column()
+  mrp: number;
 
-    @UpdateDateColumn()
-    updatedAt: Date;
+  @CreateDateColumn()
+  createdAt: Date;
 
-    @DeleteDateColumn()
-    deletedAt: Date;
+  @UpdateDateColumn()
+  updatedAt: Date;
+
+  @DeleteDateColumn()
+  deletedAt: Date;
 }

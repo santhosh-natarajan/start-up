@@ -1,28 +1,27 @@
 /* eslint-disable prettier/prettier */
-import { IsNumber, IsOptional, IsString } from 'class-validator'
-export class ProductDto { 
-  
+import { IsNumber, IsOptional, IsString } from 'class-validator';
+export class ProductDto {
   @IsString()
-  name:string;
+  name: string;
 
   @IsString()
-  type:string;
-  
+  type: string;
+
   @IsNumber()
-  price:number;
+  price: number;
 
   @IsNumber()
   availableQuantity: number;
-  
+
   @IsNumber()
   unitWeight: number;
-  
+
   @IsOptional()
-  sgst:number; 
-  
+  sgst: number;
+
   @IsOptional()
-  cgst:number;
-  
+  cgst: number;
+
   @IsOptional()
-  mrp:number;  
+  mrp: number;
 }
