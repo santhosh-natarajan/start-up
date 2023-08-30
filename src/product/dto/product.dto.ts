@@ -24,6 +24,5 @@ export class ProductDto {
   cgst:number;
   
   @IsOptional()
-  mrp:number;
-   
+  mrp:number;  
 }

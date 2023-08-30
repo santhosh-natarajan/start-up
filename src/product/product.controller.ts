@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { Controller, Get, Post, Body, ValidationPipe, UsePipes } from '@nestjs/common';
+import { Controller, Get, Post, Body, ValidationPipe, UsePipes, Param, Patch, Delete } from '@nestjs/common';
 import { ProductDto } from './dto/product.dto';
 import { ProductService } from './product.service';
 
@@ -7,9 +7,14 @@ import { ProductService } from './product.service';
 export class ProductController {
     constructor(private readonly productService:ProductService) {}
 
-    @Get()
+    @Get('all')
     getAllProduct() { 
-        return "Its return all products";
+       return this.productService.find();
+    }
+
+    @Get(':id')
+    getProductById(@Param('id') id: number) { 
+        return this.productService.findOne(id);
     }
 
     @Post()
@@ -19,7 +24,18 @@ export class ProductController {
         productData.sgst = this.calculateSGST(productData.type, productData.price);
         productData.cgst = this.calculateCGST(productData.type, productData.price);
         productData.mrp = this.calculateMRP(productData.sgst, productData.cgst, productData.price);
-        this.productService.createProduct(newProductData);
+        return this.productService.createProduct(newProductData);
+    }
+
+    @Patch(':id')
+    @UsePipes(new ValidationPipe())
+    updateProduct(@Param('id') id: number,  @Body() updatedProductDto:ProductDto) { 
+        return this.productService.update(id, updatedProductDto)
+    }
+
+    @Delete(':id')
+    deleteProduct(@Param('id') id: number) { 
+        return this.productService.remove(id);
     }
 
     private calculateSGST = (productType:string, productPrice: number) => { 
