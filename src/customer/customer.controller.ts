@@ -10,9 +10,11 @@ import {
   Param,
   Patch,
   Delete,
+  UseGuards
 } from '@nestjs/common';
 import { CustomerDto } from './dto/customer.dto';
 import { CustomerService } from './customer.service';
+import { AuthGuard } from 'src/auth/auth.guard';
 
 @Controller('customer')
 export class CustomerController {
@@ -24,6 +26,7 @@ export class CustomerController {
     return this._customer.createCustomer(CustomerDto);
   }
 
+  @UseGuards(AuthGuard)
   @Get('all')
   customerList() {
     return this._customer.findAll();
